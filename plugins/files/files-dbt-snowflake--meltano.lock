@@ -1,0 +1,10 @@
+{
+  "plugin_type": "files",
+  "name": "files-dbt-snowflake",
+  "namespace": "files_dbt_snowflake",
+  "variant": "meltano",
+  "label": "dbt Snowflake",
+  "docs": "https://hub.meltano.com/files/files-dbt-snowflake--meltano",
+  "repo": "https://github.com/meltano/files-dbt-snowflake",
+  "pip_url": "git+https://github.com/meltano/files-dbt-snowflake"
+}

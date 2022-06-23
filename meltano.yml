@@ -1,0 +1,51 @@
+version: 1
+default_environment: dev
+project_id: eeb17d12-90ed-4146-a9e6-61afeb163fa4
+send_anonymous_usage_stats: false
+plugins:
+  extractors:
+  - name: tap-github
+    variant: singer-io
+    pip_url: tap-github
+    select:
+    - commits.*
+  loaders:
+  - name: target-snowflake
+    variant: transferwise
+    pip_url: pipelinewise-target-snowflake
+    config:
+      account: epa06486
+      dbname: USERDEV_RAW
+      user: TAYLOR
+      role: TMURPHY
+      warehouse: CORE
+      file_format: USERDEV_RAW.SPEEDRUN.TMP_CSV
+      default_target_schema: SPEEDRUN
+  transformers:
+  - name: dbt-snowflake
+    variant: dbt-labs
+    pip_url: dbt-core~=1.0.0 dbt-snowflake~=1.0.0
+    config:
+      account: epa06486
+      database: USERDEV_RAW
+      user: TAYLOR
+      role: TMURPHY
+      warehouse: CORE
+      schema: SPEEDRUN
+      password: $TARGET_SNOWFLAKE_PASSWORD
+  utilities:
+  - name: superset
+    variant: apache
+    pip_url: apache-superset==1.5.0 markupsafe==2.0.1 snowflake-sqlalchemy
+    config_path: analyze/superset/superset_config.py
+environments:
+- name: dev
+  config:
+    plugins:
+      extractors:
+      - name: tap-github
+        config:
+          repository: meltano/meltano
+          start_date: '2022-06-01T00:00:00Z'
+- name: staging
+- name: prod

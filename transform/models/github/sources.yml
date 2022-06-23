@@ -1,0 +1,13 @@
+version: 2
+
+sources:
+  - name: github
+    database: USERDEV_RAW
+    schema: SPEEDRUN
+    quoting:
+      database: true
+      schema: false
+      identifier: false
+
+    tables:
+      - name: commits
