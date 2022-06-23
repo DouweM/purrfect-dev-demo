@@ -13,7 +13,7 @@ plugins:
   - name: target-snowflake
     variant: transferwise
     pip_url: pipelinewise-target-snowflake
-    config:
+    config: # Replace these with your own Snowflake details
       account: epa06486
       dbname: USERDEV_RAW
       user: TAYLOR
@@ -25,7 +25,7 @@ plugins:
   - name: dbt-snowflake
     variant: dbt-labs
     pip_url: dbt-core~=1.0.0 dbt-snowflake~=1.0.0
-    config:
+    config: # Replace these with your own Snowflake details
       account: epa06486
       database: USERDEV_RAW
       user: TAYLOR
